@@ -15,6 +15,8 @@ module.exports = {
 
 function robotLoop (main, address) {
   var run = robot(address)
-  cycle(composable([run.mw])(compose(runAction, flatten(main))))
+  cycle(composable([run.mw])(compose(runAction, flatten(main))), {
+    title: 'ev3'
+  })
   return run
 }
