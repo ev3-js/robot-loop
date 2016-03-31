@@ -35,6 +35,9 @@
     "yoco": "1.6.2"
   },
   "devDependencies": {
-    "tape": "^4.5.1"
+    "tape": "^4.5.1",
+    "babel-preset-es2015": "^6.0.0",
+    "babel-preset-react": "^6.0.0",
+    "babel-preset-stage-2": "^6.0.0"
   }
 }
