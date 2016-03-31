@@ -1,6 +1,6 @@
 {
   "name": "robot-loop",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Set up cycle shell loop for ev3-client",
   "main": "lib/index.js",
   "directories": {
