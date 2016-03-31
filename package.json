@@ -31,8 +31,8 @@
     "@f/flatten-gen": "2.0.0",
     "@f/is-generator": "1.3.2",
     "babel-polyfill": "6.7.4",
-    "cycle-shell": "^0.4.6",
-    "ev3-client": "0.1.43",
+    "cycle-shell": "0.4.6",
+    "ev3-client": "0.1.44",
     "yoco": "1.6.2"
   },
   "devDependencies": {
