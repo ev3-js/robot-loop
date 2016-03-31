@@ -30,9 +30,9 @@
     "@f/compose": "1.0.1",
     "@f/flatten-gen": "2.0.0",
     "@f/is-generator": "1.3.2",
-    "babel-polyfill": "^6.7.4",
-    "cycle-shell": "^0.4.5",
-    "ev3-client": "0.1.45",
+    "babel-polyfill": "6.7.4",
+    "cycle-shell": "0.4.5",
+    "ev3-client": "0.1.42",
     "yoco": "1.6.2"
   },
   "devDependencies": {
