@@ -21,19 +21,28 @@ function * main () {
 
 ## API
 
-### 
+### loop(main, address)
 
-Imports
-
-### index
-
-Exports
-
-### robotLoop
-
-Connect the main function to the ev3-client run middleware and use it to create a cycle shell loop
+Connect the main function to the ev3-client run middleware and use it to create a cycle shell loop.
 
 **Parameters**
 
--   `main` **fn** generator function yielding ev3-client functions
--   `address` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** string ip address of the robotLoop
+`main`
+- Type: **function**
+-  generator function yielding ev3-client functions
+
+`address`
+- Type: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
+- string ip address of the robotLoop
+
+### out(msg)
+
+Create an out action to add a message to the current cycle-shell process.
+
+`out`
+- Type: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
+- The message to display
+
+### [ev3-client API](http://github.com/ev3-js/ev3-client)
+
+This package exposes the API from ev3-client
