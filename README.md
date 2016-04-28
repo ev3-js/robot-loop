@@ -39,6 +39,8 @@ Connect the main function to the ev3-client run middleware and use it to create 
 
 Create an out action to add a message to the current cycle-shell process.
 
+**Parameters**
+
 `out`
 - Type: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
 - The message to display
