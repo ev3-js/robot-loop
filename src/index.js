@@ -8,7 +8,7 @@ import {composable} from 'yoco'
 import cycle, {out} from 'cycle-shell'
 
 /**
- * destructure ev3-client methods
+ * destructure ev3-client functions
  */
 var {robot, move, motor, sleep, read, runAction} = require('ev3-client')
 
@@ -30,8 +30,8 @@ module.exports = {
  * @param  {fn} main           generator function yielding ev3-client functions
  * @param  {string} address    string ip address of the robotLoop
  */
-function robotLoop (main, address) {
-  var run = robot(address)
+function robotLoop (main, address, opts) {
+  var run = robot(address, opts)
   cycle(composable([run.mw])(compose(runAction, flatten(main))), {
     title: 'ev3'
   })

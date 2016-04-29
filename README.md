@@ -28,12 +28,12 @@ Connect the main function to the ev3-client run middleware and use it to create 
 **Parameters**
 
 `main`
-- Type: **function**
+- Type: **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)**
 -  generator function yielding ev3-client functions
 
 `address`
 - Type: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
-- string ip address of the robotLoop
+- string containing the ip address of the robot
 
 ### out(msg)
 
