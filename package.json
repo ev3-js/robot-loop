@@ -33,6 +33,7 @@
     "babel-polyfill": "6.7.4",
     "cycle-shell": "0.4.7",
     "ev3-client": "0.1.56",
+    "socket.io": "^1.4.5",
     "yoco": "1.6.2"
   },
   "devDependencies": {

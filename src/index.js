@@ -6,6 +6,7 @@ import compose from '@f/compose'
 import flatten from '@f/flatten-gen'
 import {composable} from 'yoco'
 import cycle, {out} from 'cycle-shell'
+import io from 'socket.io-client'
 
 /**
  * destructure ev3-client functions
@@ -32,7 +33,13 @@ module.exports = {
  */
 function robotLoop (main, address, opts) {
   var run = robot(address, opts)
-  cycle(composable([run.mw])(compose(runAction, flatten(main))), {
+  var {judgeId, judgeIp = 'http://judge.ev3.sh'} = opts
+  var count = cycle(composable([run.mw])(compose(runAction, flatten(main))), {
     title: 'ev3'
   })
+
+  if (judgeId) {
+    var socket = io.connect(judgeIp)
+    count((num) => socket.emit('command', {id: judgeId, num}))
+  }
 }
