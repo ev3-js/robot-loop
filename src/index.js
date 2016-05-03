@@ -31,7 +31,7 @@ module.exports = {
  * @param  {fn} main           generator function yielding ev3-client functions
  * @param  {string} address    string ip address of the robotLoop
  */
-function robotLoop (main, address, opts) {
+function robotLoop (main, address, opts = {}) {
   var run = robot(address, opts)
   var {judgeId, judgeIp = 'http://judge.ev3.sh'} = opts
   var count = cycle(composable([run.mw])(compose(runAction, flatten(main))), {
