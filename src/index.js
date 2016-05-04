@@ -33,13 +33,25 @@ module.exports = {
  */
 function robotLoop (main, address, opts = {}) {
   var run = robot(address, opts)
-  var {judgeId, judgeIp = 'http://judge.ev3.sh'} = opts
+  var {judgeId, judgeIp = 'http://judge.ev3.sh', teamName} = opts
   var count = cycle(composable([run.mw])(compose(runAction, flatten(main))), {
     title: 'ev3'
   })
 
   if (judgeId) {
+    initJudge()
+  }
+
+  function initJudge () {
     var socket = io.connect(judgeIp)
-    count((num) => socket.emit('command', {id: judgeId, num}))
+    socket.emit('add team', {
+      teamName,
+      id: judgeId
+    })
+    count((num) => socket.emit('command', {
+      num,
+      teamName,
+      id: judgeId
+    }))
   }
 }
