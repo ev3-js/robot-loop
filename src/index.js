@@ -33,7 +33,7 @@ module.exports = {
  */
 function robotLoop (main, address, opts = {}) {
   var run = robot(address, opts)
-  var {game, color, teamName, judgeIp = 'http://judge.ev3.sh'} = opts
+  var {game, color, teamName, judgeIp = 'http://play.ev3.sh'} = opts
   var count = cycle(composable([run.mw])(compose(runAction, flatten(main))), {
     title: 'ev3'
   })
