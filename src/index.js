@@ -4,14 +4,21 @@
 import 'babel-polyfill'
 import compose from '@f/compose'
 import flatten from '@f/flatten-gen'
+import io from 'socket.io-client'
+import firebase from 'firebase'
 import {composable} from 'yoco'
 import cycle, {out} from 'cycle-shell'
-import io from 'socket.io-client'
 
 /**
  * destructure ev3-client functions
  */
 var {robot, move, motor, sleep, read, runAction} = require('ev3-client')
+const firebaseConfig = {
+  apiKey: "AIzaSyA1Ib5i5HZPCxnKp4ITiUoy5VEKaLMdsDY",
+  authDomain: "play-ev3.firebaseapp.com",
+  databaseURL: "https://play-ev3.firebaseio.com",
+  storageBucket: "play-ev3.appspot.com",
+}
 
 /**
  * Exports
@@ -39,20 +46,18 @@ function robotLoop (main, address, opts = {}) {
   })
 
   if (game) {
+    firebase.initializeApp(firebaseConfig)
+    var ref = firebase.db().ref(`games/${game}/teams`)
     initJudge()
   }
 
   function initJudge () {
-    var socket = io.connect(judgeIp)
-    socket.emit('add team', {
-      teamName,
-      color: teamColor,
-      id: game
+    ref.push({
+      name: teamName,
+      color: teamColor
     })
-    count((num) => socket.emit('command', {
-      num,
-      teamName,
-      id: game
+    count((num) => ref.update({
+      num
     }))
   }
 }
