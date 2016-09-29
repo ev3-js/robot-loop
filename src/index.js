@@ -4,7 +4,6 @@
 import 'babel-polyfill'
 import compose from '@f/compose'
 import flatten from '@f/flatten-gen'
-import io from 'socket.io-client'
 import firebase from 'firebase'
 import {composable} from 'yoco'
 import cycle, {out} from 'cycle-shell'
@@ -14,10 +13,9 @@ import cycle, {out} from 'cycle-shell'
  */
 var {robot, move, motor, sleep, read, runAction} = require('ev3-client')
 const firebaseConfig = {
-  apiKey: "AIzaSyA1Ib5i5HZPCxnKp4ITiUoy5VEKaLMdsDY",
-  authDomain: "play-ev3.firebaseapp.com",
-  databaseURL: "https://play-ev3.firebaseio.com",
-  storageBucket: "play-ev3.appspot.com",
+  apiKey: 'AIzaSyA1Ib5i5HZPCxnKp4ITiUoy5VEKaLMdsDY',
+  authDomain: 'play-ev3.firebaseapp.com',
+  databaseURL: 'https://play-ev3.firebaseio.com'
 }
 
 /**
@@ -40,24 +38,26 @@ module.exports = {
  */
 function robotLoop (main, address, opts = {}) {
   var run = robot(address, opts)
-  var {game, teamColor, teamName, judgeIp = 'http://play.ev3.sh'} = opts
+  var {game, teamColor, teamName} = opts
   var count = cycle(composable([run.mw])(compose(runAction, flatten(main))), {
     title: 'ev3'
   })
 
   if (game) {
     firebase.initializeApp(firebaseConfig)
-    var ref = firebase.db().ref(`games/${game}/teams`)
+    var ref = firebase.database().ref(`games/${game}/teams/${teamName}`)
     initJudge()
   }
 
   function initJudge () {
-    ref.push({
+    ref.set({
       name: teamName,
-      color: teamColor
+      color: teamColor,
+      commands: 0,
+      points: 0
     })
-    count((num) => ref.update({
-      num
+    count((num) => ref.child('commands').transaction(function (num) {
+      return num++
     }))
   }
 }
