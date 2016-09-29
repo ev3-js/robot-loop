@@ -1,7 +1,7 @@
 /**
  * Imports
  */
-import 'babel-polyfill'
+
 import compose from '@f/compose'
 import flatten from '@f/flatten-gen'
 import firebase from 'firebase'
