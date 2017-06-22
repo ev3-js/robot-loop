@@ -37,9 +37,12 @@ module.exports = {
  * @param  {string} address    string ip address of the robotLoop
  */
 function robotLoop (main, address, opts = {}) {
-  var run = robot(address, opts)
+  const addresses = Array.isArray(address)
+    ? address
+    : [address]
+  var mw = addresses.map(a => robot(a, opts).mw)
   var {game, teamColor, teamName} = opts
-  var count = cycle(composable([run.mw])(compose(runAction, flatten(main))), {
+  var count = cycle(composable(mw)(compose(runAction, flatten(main))), {
     title: 'ev3'
   })
 

@@ -5,10 +5,13 @@ var out = robotLoop.out
 var read = robotLoop.read
 var move = robotLoop.move
 
+const steer = move()
+
 function main () {
-  return 'blah'
+  steer.rotations(1, 40, 0)
+  steer.rotations(-1, 40, 0)
 }
 
 test('Regular function', function (t) {
-  loop(main, '192.168.1.6')
+  loop(main, '10.0.1.29')
 })
