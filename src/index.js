@@ -2,11 +2,12 @@
  * Imports
  */
 
-import compose from '@f/compose'
+import cycle, {out} from 'cycle-shell'
+import 'regenerator-runtime/runtime'
 import flatten from '@f/flatten-gen'
+import compose from '@f/compose'
 import firebase from 'firebase'
 import {composable} from 'yoco'
-import cycle, {out} from 'cycle-shell'
 
 /**
  * destructure ev3-client functions
